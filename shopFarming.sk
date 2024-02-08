@@ -1,0 +1,283 @@
+#-------------------------------------------Farming Shop-------------------------------------------------
+
+command /farmingshop:
+	trigger:
+		set {_farming} to a new chest inventory with 4 row with name "&8Farming Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_farming} to black stained glass pane named " "  
+		set slot 31 of {_farming} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 32 of {_farming} to paper named "&e&lNext Page" 
+		set slot 10 of {_farming} to sugar cane with lore " " and "&c» &7Buy price: &c$115" and "&a» &7Sell price: &a$16"
+		set slot 11 of {_farming} to wheat with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$10"
+		set slot 12 of {_farming} to cactus with lore " " and "&c» &7Buy price: &c$105" and "&a» &7Sell price: &a$5"
+		set slot 13 of {_farming} to melon slice with lore " " and "&c» &7Buy price: &c$80" and "&a» &7Sell price: &a$2"
+		set slot 14 of {_farming} to beetroot with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$7"
+		set slot 15 of {_farming} to glow berries with lore " " and "&c» &7Buy price: &c$95" and "&a» &7Sell price: &a$10"
+		set slot 16 of {_farming} to potato with lore " " and "&c» &7Buy price: &c$110" and "&a» &7Sell price: &a$13"
+		set slot 20 of {_farming} to carrot with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$13"
+		set slot 21 of {_farming} to pumpkin with lore " " and "&c» &7Buy price: &c$120" and "&a» &7Sell price: &a$17"
+		set slot 22 of {_farming} to kelp with lore " " and "&c» &7Buy price: &c$75" and "&a» &7Sell price: &a$1"
+		set slot 23 of {_farming} to nether wart with lore " " and "&c» &7Buy price: &c$170" and "&a» &7Sell price: &a$13"
+		set slot 24 of {_farming} to sweet berries with lore " " and "&c» &7Buy price: &c$75" and "&a» &7Sell price: &a$8"
+		open {_farming} to player
+
+on inventory click:
+	if name of event-inventory is "&8Farming Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 32:
+			close inventory of player
+			make player execute command "/farmingshop2"
+		if index of event-slot = 10:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Sugar Cane", 115)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Sugar Cane", 16)
+		if index of event-slot = 11:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Wheat", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Wheat", 10)
+		if index of event-slot = 12:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Cactus", 105)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Cactus", 5)
+		if index of event-slot = 13:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Melon Slice", 80)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Melon Slice", 2)
+		if index of event-slot = 14:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Beetroot", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Beetroot", 7)
+		if index of event-slot = 15:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Glow Berries", 95)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Glow Berries", 10)
+		if index of event-slot = 16:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Potato", 110)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Potato", 13)
+		if index of event-slot = 20:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Carrot", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Carrot", 13)
+		if index of event-slot = 21:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Pumpkin", 120)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Pumpkin", 17)
+		if index of event-slot = 22:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Kelp", 75)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Kelp", 1)
+		if index of event-slot = 23:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Nether Wart", 170)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Nether Wart", 13)
+		if index of event-slot = 24:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Sweet Berries", 75)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Sweet Berries", 8)
+
+
+
+
+
+command /farmingshop2:
+	trigger:
+		set {_farming2} to a new chest inventory with 4 row with name "&8Farming Shop | Page 2"
+		set slot (numbers from 0 to 35) of {_farming2} to black stained glass pane named " "  
+
+		set slot 31 of {_farming2} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 30 of {_farming2} to paper named "&e&lPrevious Page" 
+		set slot 10 of {_farming2} to beetroot seed with lore " " and "&c» &7Buy price: &c$60" and "&a» &7Sell price: &a$1.5"
+		set slot 11 of {_farming2} to cocoa beans with lore " " and "&c» &7Buy price: &c$130" and "&a» &7Sell price: &a$6"
+		set slot 12 of {_farming2} to melon seed with lore " " and "&c» &7Buy price: &c$80" and "&a» &7Sell price: &a$3"
+		set slot 13 of {_farming2} to pumpkin seed with lore " " and "&c» &7Buy price: &c$80" and "&a» &7Sell price: &a$3"
+		set slot 14 of {_farming2} to wheat seed with lore " " and "&c» &7Buy price: &c$70" and "&a» &7Sell price: &a$1"
+		set slot 15 of {_farming2} to bamboo with lore " " and "&c» &7Buy price: &c$45" and "&a» &7Sell price: &a$1"
+		set slot 16 of {_farming2} to melon with lore " " and "&c» &7Buy price: &c$48" and "&a» &7Sell price: &a$2"
+		set slot 20 of {_farming2} to cooked salmon with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$18"
+		set slot 21 of {_farming2} to raw salmon with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$18"
+		set slot 22 of {_farming2} to cooked cod with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$18"
+		set slot 23 of {_farming2} to raw cod with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$18"
+		set slot 24 of {_farming2} to pufferfish with lore " " and "&c» &7Buy price: &c$120" and "&a» &7Sell price: &a$17"
+		open {_farming2} to player
+
+on inventory click:
+	if name of event-inventory is "&8Farming Shop | Page 2":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 30:
+			close inventory of player
+			make player execute command "/farmingshop"
+		if index of event-slot = 10:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Beetroot Seeds", 60)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Beetroot Seeds", 1.5)
+		if index of event-slot = 11:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Cocoa Beans", 130)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Cocoa Beans", 6)
+		if index of event-slot = 12:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Melon Seeds", 80)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Melon Seeds", 3)
+		if index of event-slot = 13:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Pumpkin Seeds", 80)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Pumpkin Seeds", 3)
+		if index of event-slot = 14:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Wheat Seeds", 70)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Wheat Seeds", 1)
+		if index of event-slot = 15:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Bamboo", 45)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Bamboo", 1)
+		if index of event-slot = 16:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Melon", 48)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Melon", 2)
+		if index of event-slot = 20:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Cooked Salmon", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Cooked Salmon", 18)
+		if index of event-slot = 21:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Raw Salmon", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Raw Salmon", 18)
+		if index of event-slot = 22:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Cooked Cod", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Cooked Cod", 18)
+		if index of event-slot = 23:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Raw Cod", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Raw Cod", 18)
+		if index of event-slot = 24:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Pupperfish", 120)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Pupperfish", 17)
+

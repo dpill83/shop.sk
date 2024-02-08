@@ -1,0 +1,87 @@
+#--------------------------------------------Brewing Shop-------------------------------------------
+
+command /brewingshop:
+	trigger:
+		set {_brewing} to a new chest inventory with 4 row with name "&8Brewing Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_brewing} to black stained glass pane named " "  
+		set slot 31 of {_brewing} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 10 of {_brewing} to fermented spider eye with lore " " and "&c» &7Buy price: &c$200"
+		set slot 11 of {_brewing} to sugar with lore " " and "&c» &7Buy price: &c$120"
+		set slot 12 of {_brewing} to magma cream with lore " " and "&c» &7Buy price: &c$250"
+		set slot 13 of {_brewing} to spider eye with lore " " and "&c» &7Buy price: &c$300"
+		set slot 14 of {_brewing} to rabbit's foot with lore " " and "&c» &7Buy price: &c$450"
+		set slot 15 of {_brewing} to dragon's breath with lore " " and "&c» &7Buy price: &c$950"
+		set slot 16 of {_brewing} to Glistering Melon Slice with lore " " and "&c» &7Buy price: &c$180"
+		set slot 19 of {_brewing} to blaze powder with lore " " and "&c» &7Buy price: &c$320"
+		set slot 20 of {_brewing} to ghast tear with lore " " and "&c» &7Buy price: &c$450"
+		set slot 21 of {_brewing} to glowstone dust with lore " " and "&c» &7Buy price: &c$150"
+		set slot 22 of {_brewing} to gunpowder with lore " " and "&c» &7Buy price: &c$250"
+		set slot 23 of {_brewing} to pufferfish with lore " " and "&c» &7Buy price: &c$180"
+		set slot 24 of {_brewing} to phantom membrane with lore " " and "&c» &7Buy price: &c$180"
+		set slot 25 of {_brewing} to blaze rod with lore " " and "&c» &7Buy price: &c$420"
+		open {_brewing} to player
+
+on inventory click:
+	if name of event-inventory is "&8Brewing Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 10:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Fermented Spider Eye", 200)
+		if index of event-slot = 11:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Sugar", 120)
+		if index of event-slot = 12:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Magma Cream", 250)
+		if index of event-slot = 13:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Spider Eye", 300)
+		if index of event-slot = 14:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Rabbit's Foot", 450)
+		if index of event-slot = 15:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Dragon's Breath", 950)
+		if index of event-slot = 16:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Glistering Melon Slice", 180)
+		if index of event-slot = 19:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Blaze Powder", 300)
+		if index of event-slot = 20:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Ghast Tear", 450)
+		if index of event-slot = 21:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Glowstone Dust", 150)
+		if index of event-slot = 22:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Gunpowder", 250)
+		if index of event-slot = 23:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Pufferfish", 180)
+		if index of event-slot = 24:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Phantom Membrane", 180)
+		if index of event-slot = 25:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Blaze Rod", 420)
+
+

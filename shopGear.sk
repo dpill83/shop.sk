@@ -1,0 +1,77 @@
+#-------------------------------------------Gear Shop-------------------------------------------------
+
+command /gearshop:
+	trigger:
+		set {_gear} to a new chest inventory with 4 row with name "&8Gear Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_gear} to black stained glass pane named " "  
+		set slot 31 of {_gear} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 10 of {_gear} to totem of undying with lore " " and "&c» &7Buy price: &c$10,000"
+		set slot 11 of {_gear} to obsidian with lore " " and "&c» &7Buy price: &c$75"
+		set slot 12 of {_gear} to respawn anchor with lore " " and "&c» &7Buy price: &c$125"
+		set slot 13 of {_gear} to bottle o' enchanting with lore " " and "&c» &7Buy price: &c$85"
+		set slot 14 of {_gear} to enchanted golden apple with lore " " and "&c» &7Buy price: &c$100,000"
+		set slot 15 of {_gear} to ender pearls with lore " " and "&c» &7Buy price: &c$75"
+		set slot 16 of {_gear} to ender chest with lore " " and "&c» &7Buy price: &c$500"
+		set slot 20 of {_gear} to end crystal with lore " " and "&c» &7Buy price: &c$150"
+		set slot 21 of {_gear} to glowstone with lore " " and "&c» &7Buy price: &c$45"
+		set slot 22 of {_gear} to trident with lore " " and "&c» &7Buy price: &c$2,500"
+		set slot 23 of {_gear} to shield with lore " " and "&c» &7Buy price: &c$250"
+		set slot 24 of {_gear} to tnt with lore " " and "&c» &7Buy price: &c$150"
+		open {_gear} to player
+
+on inventory click:
+	if name of event-inventory is "&8Gear Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 10:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Totem of Undying", 10000)
+		if index of event-slot = 11:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Obsidian", 75)
+		if index of event-slot = 12:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Respawn Anchor", 125)
+		if index of event-slot = 13:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Bottle o' Enchanting", 85)
+		if index of event-slot = 14:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Enchanted Golden Apple", 100000)
+		if index of event-slot = 15:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Ender Pearls", 75)
+		if index of event-slot = 16:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Ender Chest", 500)
+		if index of event-slot = 20:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "End Crystal", 150)
+		if index of event-slot = 21:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Glowstone", 45)
+		if index of event-slot = 22:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Trident", 2500)
+		if index of event-slot = 23:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Shield", 250)
+		if index of event-slot = 24:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Tnt", 150)
+
+

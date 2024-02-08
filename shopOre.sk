@@ -1,0 +1,303 @@
+command /oresshop:
+	trigger:
+		set {_ores} to a new chest inventory with 4 row with name "&8Ores Shop | Page 1"
+		set slot (numbers from 0 to 9) of {_ores} to black stained glass pane named " "  
+		set slot (numbers from 17 to 18) of {_ores} to black stained glass pane named " "  
+		set slot (numbers from 26 to 35) of {_ores} to black stained glass pane named " "
+		set slot 31 of {_ores} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 32 of {_ores} to paper named "&e&lNext Page" 
+		set slot 10 of {_ores} to coal with lore " " and "&c» &7Buy price: &c$50" and "&a» &7Sell price: &a$13"
+		set slot 11 of {_ores} to copper ingot with lore " " and "&c» &7Buy price: &c$70" and "&a» &7Sell price: &a$3"
+		set slot 12 of {_ores} to iron ingot with lore " " and "&c» &7Buy price: &c$102" and "&a» &7Sell price: &a$37"
+		set slot 13 of {_ores} to gold ingot with lore " " and "&c» &7Buy price: &c$140" and "&a» &7Sell price: &a$37"
+		set slot 14 of {_ores} to emerald with lore " " and "&c» &7Buy price: &c$100" and "&a» &7Sell price: &a$2"
+		set slot 15 of {_ores} to lapis with lore " " and "&c» &7Buy price: &c$50" and "&a» &7Sell price: &a$13"
+		set slot 16 of {_ores} to diamond with lore " " and "&c» &7Buy price: &c$450" and "&a» &7Sell price: &a$100"
+		set slot 19 of {_ores} to coal block with lore " " and "&c» &7Buy price: &c$180" and "&a» &7Sell price: &a$60"
+		set slot 20 of {_ores} to copper block with lore " " and "&c» &7Buy price: &c$110" and "&a» &7Sell price: &a$7"
+		set slot 21 of {_ores} to iron block with lore " " and "&c» &7Buy price: &c$570" and "&a» &7Sell price: &a$150"
+		set slot 22 of {_ores} to gold block with lore " " and "&c» &7Buy price: &c$700" and "&a» &7Sell price: &a$200"
+		set slot 23 of {_ores} to emerald block with lore " " and "&c» &7Buy price: &c$550" and "&a» &7Sell price: &a$20"
+		set slot 24 of {_ores} to lapis block with lore " " and "&c» &7Buy price: &c$230" and "&a» &7Sell price: &a$65"
+		set slot 25 of {_ores} to diamond block with lore " " and "&c» &7Buy price: &c$2,500" and "&a» &7Sell price: &a$850"
+		open {_ores} to player
+
+on inventory click:
+	if name of event-inventory is "&8Ores Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 32:
+			close inventory of player
+			make player execute command "/oresshop2"
+		if index of event-slot = 10:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Coal", 50)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Coal", 13)
+		if index of event-slot = 11:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Copper Ingot", 70)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Copper Ingot", 3)
+		if index of event-slot = 12:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Iron Ingot", 102)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Iron Ingot", 37)
+		if index of event-slot = 13:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Gold Ingot", 140)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Gold Ingot", 37)
+		if index of event-slot = 14:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Emerald", 100)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Emerald", 2)
+		if index of event-slot = 15:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Lapis Lazuli", 50)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Lapis Lazuli", 13)
+		if index of event-slot = 16:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Diamond", 450)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Diamond", 100)
+		if index of event-slot = 19:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Coal", 180)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Coal", 60)
+		if index of event-slot = 20:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Copper", 110)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Copper", 7)
+		if index of event-slot = 21:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Iron", 570)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Iron", 150)
+		if index of event-slot = 22:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Gold", 700)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Gold", 200)
+		if index of event-slot = 23:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Emerald", 550)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Emerald", 20)
+		if index of event-slot = 24:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Lapis Lazuli", 230)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Lapis Lazuli", 65)
+		if index of event-slot = 25:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Diamond", 2500)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Diamond", 850)
+
+
+command /oresshop2:
+	trigger:
+		set {_ores2} to a new chest inventory with 4 row with name "&8Ores Shop | Page 2"
+		set slot (numbers from 0 to 9) of {_ores2} to black stained glass pane named " "  
+		set slot (numbers from 17 to 18) of {_ores2} to black stained glass pane named " "  
+		set slot (numbers from 26 to 35) of {_ores2} to black stained glass pane named " "
+		set slot 13 and 22 of {_ores2} to black stained glass pane named " "
+		set slot 31 of {_ores2} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 30 of {_ores2} to paper named "&e&lPrevious Page" 
+		set slot 10 of {_ores2} to netherite ingot with lore " " and "&c» &7Buy price: &c$1,200" and "&a» &7Sell price: &a$300"
+		set slot 11 of {_ores2} to redstone with lore " " and "&c» &7Buy price: &c$70" and "&a» &7Sell price: &a$6"
+		set slot 12 of {_ores2} to amethyst shard with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$10"
+		set slot 14 of {_ores2} to raw gold with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$30"
+		set slot 15 of {_ores2} to raw iron with lore " " and "&c» &7Buy price: &c$90" and "&a» &7Sell price: &a$17"
+		set slot 16 of {_ores2} to raw copper with lore " " and "&c» &7Buy price: &c$70" and "&a» &7Sell price: &a$2"
+		set slot 19 of {_ores2} to netherite block with lore " " and "&c» &7Buy price: &c$6,000" and "&a» &7Sell price: &a$2,000"
+		set slot 20 of {_ores2} to redstone block with lore " " and "&c» &7Buy price: &c$190" and "&a» &7Sell price: &a$30"
+		set slot 21 of {_ores2} to block of amethyst with lore " " and "&c» &7Buy price: &c$30" and "&a» &7Sell price: &a$4"
+		set slot 23 of {_ores2} to gold ore with lore " " and "&c» &7Buy price: &c$95" and "&a» &7Sell price: &a$30"
+		set slot 24 of {_ores2} to iron ore with lore " " and "&c» &7Buy price: &c$110" and "&a» &7Sell price: &a$17"
+		set slot 25 of {_ores2} to ancient debris with lore " " and "&c» &7Buy price: &c$500" and "&a» &7Sell price: &a$50"
+		open {_ores2} to player
+
+on inventory click:
+	if name of event-inventory is "&8Ores Shop | Page 2":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 30:
+			close inventory of player
+			make player execute command "/oresshop"
+		if index of event-slot = 10:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Netherite Ingot", 1200)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Netherite Ingot", 300)
+		if index of event-slot = 11:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Redstone Dust", 70)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Redstone Dust", 6)
+		if index of event-slot = 12:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Amethyst Shard", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Amethyst Shard", 10)
+		if index of event-slot = 14:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Raw Gold", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Raw Gold", 30)
+		if index of event-slot = 15:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Raw Iron", 90)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Raw Iron", 17)
+		if index of event-slot = 16:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Raw Copper", 70)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Raw Copper", 2)
+		if index of event-slot = 19:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Netherite", 6000)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Netherite", 2000)
+		if index of event-slot = 20:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Redstone", 190)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Redstone", 30)
+		if index of event-slot = 21:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Block of Amethyst", 30)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Block of Amethyst", 4)
+		if index of event-slot = 23:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Gold Ore", 95)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Gold Ore", 30)
+		if index of event-slot = 24:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Iron Ore", 110)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Iron Ore", 17)
+		if index of event-slot = 25:
+			if "%click type%" contains "LEFT":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				buy(player, "Ancient Debris", 500)
+			if "%click type%" contains "Right":
+				close inventory of player
+				set {n.%player's uuid%} to 1
+				sell(player, "Ancient Debris", 50)
+
+

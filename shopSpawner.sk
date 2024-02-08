@@ -1,0 +1,66 @@
+#------------------------------------------Spawners Shop------------------------------------------
+
+command /spawnershop:
+	trigger:
+		set {_spawner} to a new chest inventory with 4 row with name "&8Spawner Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_spawner} to black stained glass pane named " "  
+		set slot 31 of {_spawner} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 10 of {_spawner} to spawner named "<##ff48e1>&lPig &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		set slot 11 of {_spawner} to spawner named "<##ffae49>&lCow &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$45,000"
+		set slot 12 of {_spawner} to spawner named "<##54C571>&lZombie &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$90,000"
+		set slot 14 of {_spawner} to spawner named "<##859c85>&lSkeleton &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$185,000"
+		set slot 15 of {_spawner} to spawner named "<##d6dd7e>&lBlaze &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$750,000"
+		set slot 16 of {_spawner} to spawner named "<##e5b3f3>&lIron Golem &fSpawner" with all flags hidden with lore " " and "&c» &7Buy price: &c$2,500,000"
+		open {_spawner} to player
+
+on inventory click:
+	if name of event-inventory is "&8Spawner Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 10:
+			if player's balance is higher or equal to 15000:
+				console command "sm give PIG 1 %player%"
+				send "{@prefix} &aYou bought 1 <##ff48e1>&lPig &fSpawner"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 11:
+			if player's balance is higher or equal to 45000:
+				console command "sm give COW 1 %player%"
+				send "{@prefix} &aYou bought 1 <##ffae49>&lCow &fSpawner"
+				remove 45000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 12:
+			if player's balance is higher or equal to 90000:
+				console command "sm give ZOMBIE 1 %player%"
+				send "{@prefix} &aYou bought 1 <##54C571>&lZombie &fSpawner"
+				remove 90000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 14:
+			if player's balance is higher or equal to 185000:
+				console command "sm give SKELETON 1 %player%"
+				send "{@prefix} &aYou bought 1 <##859c85>&lSkeleton &fSpawner"
+				remove 185000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 15:
+			if player's balance is higher or equal to 750000:
+				console command "sm give BLAZE 1 %player%"
+				send "{@prefix} &aYou bought 1 <##d6dd7e>&lBlaze &fSpawner"
+				remove 750000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 16:
+			if player's balance is higher or equal to 2500000:
+				console command "sm give IRON_GOLEM 1 %player%"
+				send "{@prefix} &aYou bought 1 <##e5b3f3>&lIron Golem &fSpawner"
+				remove 2500000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+
+
+

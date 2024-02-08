@@ -1,0 +1,84 @@
+#------------------------------------------Commands Shop------------------------------------------
+command /commandshop:
+	trigger:
+		set {_command} to a new chest inventory with 4 row with name "&8Command Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_command} to black stained glass pane named " "  
+		set slot 31 of {_command} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 10 of {_command} to command block named "<##ff48e1>&l/craft &fCommand" with all flags hidden with lore "Opens crafting table" and "&c» &7Buy price: &c$15,000"
+		set slot 11 of {_command} to command block named "<##ffae49>&l/echest &fCommand" with all flags hidden with lore "Opens ender chest" and "&c» &7Buy price: &c$15,000"
+		set slot 12 of {_command} to command block named "<##54C571>&l/blacksmith &fCommand" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		set slot 13 of {_command} to command block named "<##859c85>&l/repairman &fCommand" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		set slot 14 of {_command} to command block named "<##d6dd7e>&l/scrapper &fCommand" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		set slot 15 of {_command} to command block named "<##e5b3f3>&l/home &fCommand" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		set slot 16 of {_command} to command block named "<##e5b3f3>&1/anchor &fCommand" with all flags hidden with lore " " and "&c» &7Buy price: &c$15,000"
+		open {_command} to player
+
+on inventory click:
+	if name of event-inventory is "&8Command Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 10:
+			if player has permission "craft.use":
+				send "{@prefix} &cYou already have access to the /craft command."
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set craft.use true"
+				send "{@prefix} &aYou can now use the <##ff48e1>&l/craft &fcommand"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 11:
+			if player has permission "echest.use":
+				send "{@prefix} &cYou already have access to the /echest command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set echest.use true"
+				send "{@prefix} &aYou can now use the <##ffae49>&l/echest &fcommand"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 12:
+			if player has permission "tpBlacksmith.use":
+				send "{@prefix} &cYou already have access to the /blacksmith command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set tpBlacksmith.use"
+				send "{@prefix} &aYou can now teleport directly to the <##54C571>&lBlacksmith &fin the Adventure Guild"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 13:
+			if player has permission "tpRepairman.use":
+				send "{@prefix} &cYou already have access to the /repairman command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set tpRepairman.use"
+				send "{@prefix} &aYou can now teleport directly to the <##859c85>&lRepairman &fin the Adventure Guild"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 14:
+			if player has permission "tpScrapper.use":
+				send "{@prefix} &cYou already have access to the /scrapper command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set tpScrapper.use"
+				send "{@prefix} &aYou can now teleport directly to the <##859c85>&lScrapper &fin the Adventure Guild"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 15:
+			if player has permission "homes.use":
+				send "{@prefix} &cYou already have access to the /home command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set homes.use"
+				send "{@prefix} &aYou can now use the <##ffae49>&l/home &fcommand"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"
+		if index of event-slot = 16:
+			if player has permission "anchors.use":
+				send "{@prefix} &cYou already have access to the /anchor command"
+			else if player's balance is higher or equal to 15000:
+				console command "lp user %player% permission set anchors.use"
+				send "{@prefix} &aYou can now use the <##ffae49>&l/anchor &fcommand"
+				remove 15000 from player's balance
+			else:
+				send "{@prefix} &cYou don't have enough money to buy this item"

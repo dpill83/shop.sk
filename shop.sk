@@ -1,0 +1,218 @@
+options:
+	prefix: &8[&6Shop&8] &7- 
+
+command /shop:
+	trigger:
+		set {_shop} to a new chest inventory with 4 row with name "&8Server Shop"
+		set slot 11 of {_shop} to brewing stand named "<##db0055>Brewing Shop" with lore "&8Shop Category" and " " and "&fGrab the best brewing" and "&fmaterials from here!" and " " and "&eClick to browse"
+		set slot 12 of {_shop} to totem of undying named "&eGear Shop" with lore "&8Shop Category" and " " and "&fA shop that contains" and "&fequipment to fight!" and " " and "&eClick to browse"
+		set slot 13 of {_shop} to command block named "<##00aaaa>Commands" with lore "&8Shop Category" and " " and "&fGet access to some" and "extra commands!" and " " and "&eClick to browse"
+		set slot 14 of {_shop} to diamond named "<##007ac7>Ores Shop" with lore "&8Shop Category" and " " and "&fA shop that contains" and "&fores of all types!" and " " and "&eClick to browse"
+		set slot 15 of {_shop} to steak named "<##dd8500>Food Shop" with lore "&8Shop Category" and " " and "&fA shop that contains" and "&ffood!" and " " and "&eClick to browse"
+		set slot 21 of {_shop} to sugar cane named "&aFarming Shop" with lore "&8Shop Category" and " " and "&fA shop to sell and buy" and "&ffarming loot!" and " " and "&eClick to browse"
+		set slot 22 of {_shop} to spawner named "<##9c00c7>Spawner Shop" with all flags hidden with lore "&8Shop Category" and " " and "&fBuy spawners and" and "&fsell their loot in" and "&fthe other shops!" and " " and "&eClick to browse"
+		set slot 23 of {_shop} to bone named "<##db0055>Mob Loot Shop" with lore "&8Shop Category" and " " and "&fLoot from killing" and "&fmobs can be sold here!" and " " and "&eClick to browse"
+		open {_shop} to player
+
+on inventory click:
+	if name of event-inventory is "&8Server Shop":
+		cancel event
+		if index of event-slot = 11:
+			close inventory of player
+			make player execute command "/brewingshop"
+		if index of event-slot = 12:
+			close inventory of player
+			make player execute command "/gearshop"
+		if index of event-slot = 13:
+			close inventory of player
+			make player execute command "/commandshop"	
+		if index of event-slot = 14:
+			close inventory of player
+			make player execute command "/oresshop"
+		if index of event-slot = 15:
+			close inventory of player
+			make player execute command "/foodshop"
+		if index of event-slot = 21:
+			close inventory of player
+			make player execute command "/farmingshop"
+		if index of event-slot = 22:
+			close inventory of player
+			make player execute command "/spawnershop"
+		if index of event-slot = 23:
+			close inventory of player
+			make player execute command "/moblootshop"
+
+
+
+
+#------------------------------------------Item Buy Gui-------------------------------------------
+
+function buy(p: player, item: string, price: int):
+    set {_uuid} to uuid of p
+    if {n.%{_uuid}%} is not set:
+        set {n.%{_uuid}%} to 1
+    set {_n} to {n.%{_uuid}%}
+    set {_i} to "%{_item}%" parsed as item type
+    set {_buy} to chest inventory with 6 rows named "&aBuying %{_item}%"
+    loop 54 times:
+        format slot (loop-number - 1) of {_buy} with black stained glass pane named " " to be unstealable
+    format slot 22 of {_buy} with {_n} of {_i} to be unstealable
+    set lore of slot 22 of {_buy} to "&7Buy Price: &c$%{_price}%"
+    if {_n} > 1:
+        format slot 18 of {_buy} with red stained glass pane named "&c&lSet to 1" to be unstealable
+        format slot 20 of {_buy} with red stained glass pane named "&c&lRemove 1" to be unstealable
+    if {_n} > 10:
+        format slot 19 of {_buy} with red stained glass pane named "&c&lRemove 10" to be unstealable
+    if {_n} < 64:
+        format slot 24 of {_buy} with green stained glass pane named "&a&lAdd 1" to be unstealable
+        format slot 26 of {_buy} with green stained glass pane named "&a&lSet to 64" to be unstealable
+    if {_n} < 35:
+        format slot 25 of {_buy} with green stained glass pane named "&a&lAdd 10" to be unstealable
+    format slot 39 of {_buy} with green stained glass pane named "&a&lConfirm" to be unstealable
+    format slot 41 of {_buy} with red stained glass pane named "&c&lCancel" to be unstealable
+    open {_buy} to p
+    set {n.%{_uuid}%} to {_n}
+    set {item.%{_uuid}%} to {_i}
+    set {price.%{_uuid}%} to {_price}
+
+on inventory click:
+    if name of event-inventory contains "&aBuying":
+        cancel event
+        set {_uuid} to uuid of player
+        if {n.%{_uuid}%} is higher than 1:
+            if clicked slot is 20:
+                remove 1 from {n.%{_uuid}%}
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+            else if clicked slot is 18:
+                set {n.%{_uuid}%} to 1
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+        if {n.%{_uuid}%} is higher than 10:
+            if clicked slot is 19:
+                remove 10 from {n.%{_uuid}%}
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+        if {n.%{_uuid}%} is lower than 64:
+            if clicked slot is 24:
+                add 1 to {n.%{_uuid}%}
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+            else if clicked slot is 26:
+                set {n.%{_uuid}%} to 64
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+        if {n.%{_uuid}%} is lower than 35:
+            if clicked slot is 25:
+                add 10 to {n.%{_uuid}%}
+                buy(player, {item.%{_uuid}%}, {price.%{_uuid}%})
+        if clicked slot is 39:
+            if player's balance is greater than or equal to {price.%{_uuid}%}*{n.%{_uuid}%}:
+                remove {price.%{_uuid}%}*{n.%{_uuid}%} from player's balance
+                give {_n} of {_i} to player
+                close player's inventory
+                send "&aYou have purchased %{_n}% of %{_item}% for $%{price.%{_uuid}%}*{n.%{_uuid}%}%."
+            else:
+                send "&cYou do not have enough money to make this purchase."
+        else if clicked slot is 41:
+            close player's inventory
+            player command "/shop"			
+
+
+
+
+
+#------------------------------------------Item Sell Gui----------------------------------------------
+
+
+
+function sell(p: player, item: string, price: int):
+		if {n.%{_p}%} is not set:
+				set {_n.%{_p}%} to 1
+		else:
+				set {_n.%{_p}%} to {n.%{_p}%}
+		set {_i.%{_p}%} to {_item} parsed as item
+		set {_buy.%{_p}%} to a new chest inventory with 6 row with name "&cSelling %{_item}%"
+		set slot (numbers from 0 to 53) of {_buy.%{_p}%} to black stained glass pane named " " 
+		set slot 22 of {_buy.%{_p}%} to {_n.%{_p}%} of {_i.%{_p}%} with lore "&7Sell Earnings: &c$%{_n.%{_p}%}*{_price}%"
+		if {_n.%{_p}%} is higher than 1:
+				set slot 18 of {_buy.%{_p}%} to red stained glass pane named "&c&lSet to 1"
+				set slot 20 of {_buy.%{_p}%} to red stained glass pane named "&c&lRemove 1"
+		if {_n.%{_p}%} is higher than 10:
+				set slot 19 of {_buy.%{_p}%} to 10 of red stained glass pane named "&c&lRemove 10"
+		if {_n.%{_p}%} is lower than 64:
+				set slot 24 of {_buy.%{_p}%} to green stained glass pane named "&a&lAdd 1"
+				set slot 26 of {_buy.%{_p}%} to 64 of green stained glass pane named "&a&lSet to 64"
+		if {_n.%{_p}%} is lower than 35:
+				set slot 25 of {_buy.%{_p}%} to 10 of green stained glass pane named "&a&lAdd 10"
+		set slot 39 of {_buy.%{_p}%} to green stained glass named "&a&lConfirm"
+		set slot 41 of {_buy.%{_p}%} to red stained glass named "&c&lCancel"
+		set {n.%{_p}%} to {_n.%{_p}%}
+		set {item.%{_p}%} to {_item}
+		set {price.%{_p}%} to {_price}
+		open {_buy.%{_p}%} to {_p}
+
+
+on inventory click:
+	if name of event-inventory contains "&cSelling":
+		cancel event
+		if {n.%player's uuid%} is higher than 1:
+			if index of event-slot = 20:
+				remove 1 from {n.%player's uuid%}
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+			if index of event-slot = 18:
+				set {n.%player's uuid%} to 1
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+		if {n.%player's uuid%} is higher than 10:
+			if index of event-slot = 19:
+				remove 10 from {n.%player's uuid%}
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+				
+		if {n.%player's uuid%} is lower than 64:
+			if index of event-slot = 24:
+				add 1 to {n.%player's uuid%}
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+			if index of event-slot = 26:
+				set {n.%player's uuid%} to 64
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+		if {n.%player's uuid%} is lower than 35:
+			if index of event-slot = 25:
+				add 10 to {n.%player's uuid%}
+				sell(player, {item.%player's uuid%}, {price.%player's uuid%})
+		
+		if index of event-slot = 39:
+			set {tot.%player's uuid%} to ({n.%player's uuid%}*{price.%player's uuid%})
+			set {item.%player's uuid%} to {item.%player's uuid%} parsed as item
+			if player has {n.%player's uuid%} of {item.%player's uuid%}:
+				remove {n.%player's uuid%} of {item.%player's uuid%} from player's inventory
+				add {tot.%player's uuid%} to player's balance
+				close player's inventory
+				player command "/shop"
+				send "{@prefix} &aYou Sold %{n.%player's uuid%}% %{item.%player's uuid%}%"
+			else:
+				close player's inventory
+				player command "/shop"
+				send "{@prefix} &cYou don't have enough %{item.%player's uuid%}% to sell this amount!"
+		if index of event-slot = 41:	
+			close player's inventory
+			player command "/shop"			
+			
+
+
+
+
+on load:
+	if player is op:
+		wait 1 second
+		send "{@prefix} &6Loading..."
+		wait 3 seconds
+		send "&6-------------- &8-- -- &6---------------" to player
+		send "                  &6&lShop &7Skript" to player
+		send "                   &7Version: &f1.1.5" to player
+		send "                &7Made By N1kk323" to player
+		send "&6--------------- &8-- -- &6--------------" to player
+on join:
+	if player is op:
+		wait 1 second
+		send "{@prefix} &6Loading..."
+		wait 3 seconds
+		send "&6-------------- &8-- -- &6---------------" to player
+		send "                  &6&lShop &7Skript" to player
+		send "                   &7Version: &f1.1.5" to player
+		send "                &7Made By N1kk323" to player
+		send "&6--------------- &8-- -- &6--------------" to player

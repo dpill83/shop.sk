@@ -1,0 +1,88 @@
+#----------------------------------------Mob Loot Shop--------------------------------------------
+
+command /moblootshop:
+	trigger:
+		set {_mobloot} to a new chest inventory with 4 row with name "&8Mob Loot Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_mobloot} to black stained glass pane named " "  
+		set slot 31 of {_mobloot} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 10 of {_mobloot} to feather with lore " " and "&a» &7Sell price: &a$6"
+		set slot 11 of {_mobloot} to leather with lore " " and "&a» &7Sell price: &a$8"
+		set slot 12 of {_mobloot} to raw chicken with lore " " and "&a» &7Sell price: &a$7"
+		set slot 13 of {_mobloot} to raw pork with lore " " and "&a» &7Sell price: &a$10"
+		set slot 14 of {_mobloot} to raw mutton with lore " " and "&a» &7Sell price: &a$10"
+		set slot 15 of {_mobloot} to raw beef with lore " " and "&a» &7Sell price: &a$10"
+		set slot 16 of {_mobloot} to rotten flesh with lore " " and "&a» &7Sell price: &a$7"
+		set slot 19 of {_mobloot} to bone with lore " " and "&a» &7Sell price: &a$15"
+		set slot 20 of {_mobloot} to blaze rod with lore " " and "&a» &7Sell price: &a$32"
+		set slot 21 of {_mobloot} to slime ball with lore " " and "&a» &7Sell price: &a$25"
+		set slot 22 of {_mobloot} to magma cream with lore " " and "&a» &7Sell price: &a$26"
+		set slot 23 of {_mobloot} to gunpowder with lore " " and "&a» &7Sell price: &a$23"
+		set slot 24 of {_mobloot} to ender pearl with lore " " and "&a» &7Sell price: &a$18"
+		set slot 25 of {_mobloot} to arrow with lore " " and "&a» &7Sell price: &a$2"
+		open {_mobloot} to player
+
+
+on inventory click:
+	if name of event-inventory is "&8Mob Loot Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 10:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Feather", 6)
+		if index of event-slot = 11:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Leather", 8)
+		if index of event-slot = 12:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Raw Chicken", 7)
+		if index of event-slot = 13:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Raw Porkchop", 10)
+		if index of event-slot = 14:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Raw Mutton", 10)
+		if index of event-slot = 15:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Raw Beef", 10)
+		if index of event-slot = 16:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Rotten Flesh", 7)
+		if index of event-slot = 19:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Bone", 15)
+		if index of event-slot = 20:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Blaze Rod", 32)
+		if index of event-slot = 21:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Slimeball", 25)
+		if index of event-slot = 22:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Magma Cream", 26)
+		if index of event-slot = 23:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Gunpowder", 23)
+		if index of event-slot = 24:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Ender Pearl", 18)
+		if index of event-slot = 25:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			sell(player, "Arrow", 2)
+
+

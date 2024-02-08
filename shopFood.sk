@@ -1,0 +1,60 @@
+#-------------------------------------------Food Shop-------------------------------------------------
+
+command /foodshop:
+	trigger:
+		set {_food} to a new chest inventory with 4 row with name "&8Food Shop | Page 1"
+		set slot (numbers from 0 to 35) of {_food} to black stained glass pane named " "  
+		set slot 31 of {_food} to barrier named "&c&lGo Back to Categories" with lore "&7Click here to return" and "&7to the main menu"
+		set slot 11 of {_food} to cooked pork with lore " " and "&c» &7Buy price: &c$25"
+		set slot 12 of {_food} to cooked mutton with lore " " and "&c» &7Buy price: &c$22.5"
+		set slot 13 of {_food} to cooked chicken with lore " " and "&c» &7Buy price: &c$20"
+		set slot 14 of {_food} to golden carrot with lore " " and "&c» &7Buy price: &c$150"
+		set slot 15 of {_food} to bread with lore " " and "&c» &7Buy price: &c$17.5"
+		set slot 21 of {_food} to baked potato with lore " " and "&c» &7Buy price: &c$17.5"
+		set slot 22 of {_food} to steak with lore " " and "&c» &7Buy price: &c$25"
+		set slot 23 of {_food} to golden apple with lore " " and "&c» &7Buy price: &c$450"
+		open {_food} to player
+
+on inventory click:
+	if name of event-inventory is "&8Food Shop | Page 1":
+		cancel event
+		if index of event-slot = 31:
+			close inventory of player
+			make player execute command "/shop"
+		if index of event-slot = 11:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Cooked Pork", 25)
+		if index of event-slot = 12:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Cooked Mutton", 22.5)
+		if index of event-slot = 13:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Cooked Pork", 20)
+		if index of event-slot = 14:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Golden Carrot", 150)
+		if index of event-slot = 15:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Bread", 17.5)
+		if index of event-slot = 21:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Baked Potato", 17.5)
+		if index of event-slot = 22:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Steak", 25)
+		if index of event-slot = 23:
+			close inventory of player
+			set {n.%player's uuid%} to 1
+			buy(player, "Golden Apple", 450)
+
+
+
+
+
